@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = PopularPosts::VERSION
   gem.authors       = ["Bastian Bartmann"]
   gem.email         = ["xarfai27@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = "Octopress Gauges Popular Posts adds a popular posts asides section to your Octopress blog. It makes use of GitHub's Gaug.es to determine the popularity of the posts."
+  gem.summary       = 'Adds a popular posts asides section to your Octopress blog.'
+  gem.homepage      = "https://github.com/coding-chimp/octopress-gauges-popular-posts"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

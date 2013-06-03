@@ -16,7 +16,7 @@ module PopularPost
       FileUtils.copy_file plugin_path, plugin_destination
       FileUtils.copy_file aside_path, aside_destination
       Dir.mkdir cache_path unless File.directory?(cache_path)
-      FileUtils.copy_file config_path, config_destination
+      FileUtils.copy_file config_path, config_destination unless File.exists?(config_path)
     end
 
     # Public: Removes plugin files

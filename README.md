@@ -1,6 +1,6 @@
 # Octopress Gauges Popular Posts Plugin #
 
-Popular posts plugin adds a popular asides section to your [Octopress][1] blog. Popularity of the posts is calculated by page views tracked through [Gaug.es][2]
+Popular posts plugin adds a popular asides section to your [Octopress][1] blog. Popularity of the posts is calculated by page views tracked through [Gaug.es][2].
 
 This gem is modelled after the [octopress-popular-posts gem][2]. 
 
@@ -23,7 +23,6 @@ And run the installation to copy the plugin to your source:
 Add the Gaug.es Tracking ID of your blog and your Gaug.es API token to your **config.yml**:
 
     gauges_tracking_id: <your-tracking-id>
-    gauges_api_token: <your-api-token>
 
 Also add the following line:
 
@@ -37,13 +36,20 @@ Next, we need to add the popular post aside section:
 
 Note the **custom/asides/popular_posts.html** that is added on the third entry of the array.
 
+The installation created the `config` file in the `.page_views` directory. In there you have to add your Gaug.es API token and you can also add the date started tracking your site with Gaug.es.
+
+    :token: <your-api-token>
+    :signup_date: 2013-06-03
+
+If a `singup_date` is given, thes gem will fetch the views since then. Depending on the distance, this may take a while.
+
 Once done, you need to generate the blog:
     
     $ rake generate
 
-I also suggest that you ignore the cached page rank files by adding this line to your **.gitignore**:
+I also suggest that you ignore the cached page views files and the config file with your Gaug.es API token by adding this line to your **.gitignore**:
 
-    .page_ranks
+    .page_views
 
 ## Usage ##
 
@@ -72,10 +78,10 @@ To remove the plugin, run the following command:
 You will also need to remove the following configurations:
 
 1. The octopress-popular-posts gem from your **Gemfile**
-2. The **gauges_tracking_id** and **gauges_api_token** variables from your **config.yml**
+2. The **gauges_tracking_id** variable from your **config.yml**
 3. The **popular_posts_count** variable from your **config.yml**
 4. The popular posts asides under **defaults_asides** from your **config.yml**
-
+5. The cache directory **.page_views**
 
 ## Contributing ##
 

@@ -2,8 +2,7 @@
 #         plugin
 module PopularPost
   module Utilities
-    PLUGINS_DIR = File.expand_path(File.dirname(__FILE__) + '/../../templates/plugins')
-    ASIDES_DIR = File.expand_path(File.dirname(__FILE__) + '/../../templates/asides')
+    TEMPLATES_DIR = File.expand_path(File.dirname(__FILE__) + '/../../templates')
 
     # Public: Installs the templates to the designated locations
     #
@@ -16,6 +15,8 @@ module PopularPost
     def self.install
       FileUtils.copy_file plugin_path, plugin_destination
       FileUtils.copy_file aside_path, aside_destination
+      Dir.mkdir cache_path unless File.directory?(cache_path)
+      FileUtils.copy_file config_path, config_destination
     end
 
     # Public: Removes plugin files
@@ -42,7 +43,7 @@ module PopularPost
     #
     # Returns a String
     def self.plugin_path
-      File.join(PLUGINS_DIR, 'popular_post.rb')
+      File.join(TEMPLATES_DIR, 'popular_post.rb')
     end
 
     # Private: Returns the file path to the plugin destination
@@ -66,7 +67,7 @@ module PopularPost
     #
     # Returns a String
     def self.aside_path
-      File.join(ASIDES_DIR, 'popular_posts.html')
+      File.join(TEMPLATES_DIR, 'popular_posts.html')
     end
 
     # Private: Returns the file path to the aside destination
@@ -79,6 +80,42 @@ module PopularPost
     # Returns a String
     def self.aside_destination
       File.join(Dir.pwd, 'source', '_includes', 'custom', 'asides', 'popular_posts.html')
+    end
+
+    # Private: Returns the file path to the cache direcetory
+    #
+    # Examples
+    #
+    #   aside_path
+    #   # => /path/to/.page_views
+    #
+    # Returns a String
+    def self.cache_path
+      File.join(Dir.pwd, '.page_views')
+    end
+
+    # Private: Returns the file path to the config template
+    #
+    # Examples
+    #
+    #   aside_path
+    #   # => /path/to/config
+    #
+    # Returns a String
+    def self.config_path
+      File.join(TEMPLATES_DIR, 'config')
+    end
+
+    # Private: Returns the file path to the config destination
+    #
+    # Examples
+    #
+    #   aside_path
+    #   # => /path/to/destination/config
+    #
+    # Returns a String
+    def self.config_destination
+      File.join(Dir.pwd, '.page_views', 'config')
     end
   end
 end
